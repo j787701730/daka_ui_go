@@ -424,8 +424,10 @@ func (f *TMainForm) doTimer(sender vcl.IObject) {
 		for j := 0; j < len(data); j++ {
 			dataTime := strings.Split(data[j].Time, ":")
 			if hour == dataTime[0] {
-				if minute == dataTime[1] && !closeFlag {
+				if minute == dataTime[1] && !closeFlag && !form1.CanFocus() {
 					form1.Show()
+					// 真 置顶
+					form1.SetFormStyle(types.FsSystemStayOnTop)
 					form1.Text.SetCaption(data[j].Message)
 					// 显示到最前面
 					form1.BringToFront()
